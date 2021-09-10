@@ -24,3 +24,19 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 var { dateFaker } = require('date-faker');
+
+/* Cypress.Commands.add('getToken', (user,password) => {
+    
+    cy.request({
+        method: 'POST',
+        url: 'http://localhost:8089/api/v1/auth',
+        body: {
+            email: user,
+            senha: password
+        }
+
+    }).then(res=>{
+        return res.body.data.token;
+
+    })
+} */

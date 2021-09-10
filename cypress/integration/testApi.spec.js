@@ -11,6 +11,8 @@ describe('Soul test Trip API', ()=>{
     let acompanhante = faker.name.findName();
     let localDeDestino = faker.address.city();
     //console.log(localDeDestino);
+    let someId = '36';
+    let myUrl = 'http://localhost:8089/api/v1/viagens/'
     
     before(()=>{
         cy.request({
@@ -70,21 +72,9 @@ describe('Soul test Trip API', ()=>{
             expect(res.body.data).to.have.property('localDeDestino').to.be.equal(localDeDestino);
             expect(res.body.data).to.have.property('regiao').to.be.equal("Norte");            
         })    
-           
-        //console.log('Token do Admin')
-        //console.log(tokenAdmin);
-        /*  cy.get('@response').then(res=>{
-            expect(res.status).to.be.equal(201)
-         })
-        */      
-        //console.log("oi");
-        //.its('data.token').should('not.be.empty')
-        //.then(res=>console.log(res))
-        //.then(res=>console.log(res)).its('body.data.token').should('not.be.empty')
-
     })
 
-    it('Shoul return all trips booked',()=> {
+    it.skip('Shoul return all trips booked',()=> {
        
         cy.request({
             method: 'GET',
@@ -95,11 +85,41 @@ describe('Soul test Trip API', ()=>{
         cy.get('@response').then(res=>{
             expect(res.status).to.be.equal(200);
             expect(res.body).not.to.null;
-        })    
-        
+            console.log(res.body)  
+        })
+              
     })
 
+    it.skip('Shoul delete a trip',()=> {
+       
+          
+        myUrl = myUrl + someId;
+        console.log(myUrl)
+        
+        cy.request({
+            method: 'DELETE',
+            url: myUrl,
+            headers:{Authorization: tokenAdmin}   
+        })    
+    })
+
+
 })
+
+
+function getSomeId(token){
+    /* let someId='';
+    cy.request({
+        method: 'GET',
+        url: 'http://localhost:8089/api/v1/viagens',
+        headers:{Authorization: token}
+        
+    }).its('res.body.data.id').should('not.be.empty')
+        .then(res.body.data.id =>{
+        return id
+    }) */
+    
+}
 
 
 
